@@ -1,103 +1,211 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的個人簡介</title>
-    <style>
-        body {
-            font-family: "Microsoft JhengHei", sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-            padding: 40px 0;
-        }
-        header img {
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            border: 4px solid white;
-        }
-        main {
-            max-width: 800px;
-            margin: 30px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        h2 {
-            color: #007bff;
-            border-left: 5px solid #007bff;
-            padding-left: 10px;
-        }
-        ul {
-            list-style: square;
-            padding-left: 20px;
-        }
-        footer {
-            text-align: center;
-            background-color: #f1f1f1;
-            padding: 15px;
-            color: #555;
-        }
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>王小明的個人履歷</title>
+  <style>
+    :root {
+      --bg-color: #f8f9fa;
+      --text-color: #333;
+      --accent-color: #007bff;
+      --card-bg: #fff;
+    }
+
+    body.dark {
+      --bg-color: #1e1e1e;
+      --text-color: #eee;
+      --accent-color: #4dabf7;
+      --card-bg: #2b2b2b;
+    }
+
+    body {
+      font-family: "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* 導覽列 */
+    nav {
+      background-color: var(--accent-color);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav h1 {
+      font-size: 1.5em;
+      margin: 0;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* 主題切換按鈕 */
+    .theme-toggle {
+      background: white;
+      color: var(--accent-color);
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .theme-toggle:hover {
+      background: #e0e0e0;
+    }
+
+    /* 頁首 */
+    header {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    header img {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      border: 4px solid var(--accent-color);
+    }
+
+    header h2 {
+      color: var(--accent-color);
+    }
+
+    /* 內容區 */
+    section {
+      max-width: 800px;
+      margin: 30px auto;
+      background-color: var(--card-bg);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
+
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h3 {
+      border-left: 5px solid var(--accent-color);
+      padding-left: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: var(--card-bg);
+      margin-top: 50px;
+      color: #888;
+    }
+
+    @media (max-width: 600px) {
+      nav ul {
+        display: none;
+      }
+      nav {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 <body>
+  <nav>
+    <h1>王小明</h1>
+    <ul>
+      <li><a href="#about">關於我</a></li>
+      <li><a href="#skills">技能</a></li>
+      <li><a href="#interests">興趣</a></li>
+      <li><a href="#contact">聯絡</a></li>
+    </ul>
+    <button class="theme-toggle" id="themeBtn">🌙 深色模式</button>
+  </nav>
 
-    <header>
-        <img src="https://via.placeholder.com/150" alt="個人照片">
-        <h1>王小明</h1>
-        <p>前端工程師｜設計愛好者｜咖啡迷</p>
-    </header>
+  <header>
+    <img src="https://via.placeholder.com/150" alt="個人照片">
+    <h2>前端工程師｜創意思維設計者</h2>
+    <p>熱愛網頁設計與前端開發的創作者，喜歡用程式打造美學與實用並存的作品。</p>
+  </header>
 
-    <main>
-        <section>
-            <h2>關於我</h2>
-            <p>你好！我是王小明，一位熱愛前端開發與設計的工程師。擁有三年網頁開發經驗，喜歡挑戰創新專案，並不斷學習新技術。</p>
-        </section>
+  <section id="about">
+    <h3>關於我</h3>
+    <p>你好！我是王小明，目前在台北任職前端工程師，專注於網頁互動設計與使用者體驗。喜歡學習新技術，也熱衷參與開源專案。</p>
+  </section>
 
-        <section>
-            <h2>技能</h2>
-            <ul>
-                <li>HTML / CSS / JavaScript</li>
-                <li>React / Vue.js 前端框架</li>
-                <li>UI/UX 設計與 RWD 響應式網頁設計</li>
-                <li>Git 版本控制與團隊協作</li>
-            </ul>
-        </section>
+  <section id="skills">
+    <h3>技能</h3>
+    <ul>
+      <li>HTML5 / CSS3 / JavaScript (ES6+)</li>
+      <li>React / Vue / Node.js</li>
+      <li>RWD 響應式設計 / UI 設計</li>
+      <li>Git / Figma / RESTful API</li>
+    </ul>
+  </section>
 
-        <section>
-            <h2>興趣</h2>
-            <ul>
-                <li>攝影與平面設計</li>
-                <li>旅遊與咖啡文化</li>
-                <li>學習新語言與文化交流</li>
-            </ul>
-        </section>
+  <section id="interests">
+    <h3>興趣</h3>
+    <p>除了寫程式，我也喜歡攝影、旅遊與咖啡文化，喜歡觀察生活中的細節並將其轉化為創意靈感。</p>
+  </section>
 
-        <section>
-            <h2>聯絡我</h2>
-            <p>Email：<a href="mailto:xiaoming@example.com">xiaoming@example.com</a></p>
-            <p>LinkedIn：<a href="https://www.linkedin.com/in/xiaoming" target="_blank">https://www.linkedin.com/in/xiaoming</a></p>
-        </section>
-    </main>
+  <section id="contact">
+    <h3>聯絡我</h3>
+    <p>Email：<a href="mailto:xiaoming@example.com">xiaoming@example.com</a></p>
+    <p>LinkedIn：<a href="https://www.linkedin.com/in/xiaoming" target="_blank">linkedin.com/in/xiaoming</a></p>
+  </section>
 
-    <footer>
-        <p>© 2025 王小明 | 個人網站</p>
-    </footer>
+  <footer>
+    <p>© 2025 王小明 | 個人履歷網站</p>
+  </footer>
 
+  <script>
+    // 主題切換
+    const btn = document.getElementById("themeBtn");
+    btn.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      btn.textContent = document.body.classList.contains("dark")
+        ? "☀️ 淺色模式"
+        : "🌙 深色模式";
+    });
+
+    // 滑動動畫
+    const sections = document.querySelectorAll("section");
+    window.addEventListener("scroll", () => {
+      const triggerBottom = window.innerHeight * 0.85;
+      sections.forEach(sec => {
+        const rect = sec.getBoundingClientRect().top;
+        if (rect < triggerBottom) {
+          sec.classList.add("show");
+        }
+      });
+    });
+  </script>
 </body>
 </html>
